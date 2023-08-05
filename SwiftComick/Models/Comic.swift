@@ -15,4 +15,6 @@ struct Comic: Identifiable, Hashable {
     let id = UUID()
     let imageUrl: String
     let title: String
+    let description: String
+    var chapters: [ComicChapter] = []
 }

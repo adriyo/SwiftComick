@@ -11,7 +11,7 @@
 
 import SwiftUI
 
-private enum AlertType: String {
+enum AlertType: String {
     case Loading
     case Error
 }
@@ -19,36 +19,18 @@ private enum AlertType: String {
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var errorMessage: String = ""
-    
-    @State private var showAlert: Bool = false
-    
-    @State private var alertType: AlertType = .Error
+       
+    @StateObject private var viewModel: AuthViewModel
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
     
-    private func isValidEmail(email: String) -> Bool {
-        return !email.isEmpty
-    }
-    
-    private func isValidPassword(password: String) -> Bool {
-        return password.count >= 6
+    init(viewModel: AuthViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     private func login() {
-        if isValidEmail(email: email) && isValidPassword(password: password) {
-            showAlert = true
-            alertType = .Loading
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                showAlert = false
-                presentationMode.wrappedValue.dismiss()
-            }
-        } else {
-            errorMessage = "Invalid email or password."
-            showAlert = true
-            alertType = .Error
-        }
+        viewModel.login(email: email, password: password)
     }
     
     private func register() {
@@ -84,9 +66,9 @@ struct LoginView: View {
         }
         .padding()
         .preferredColorScheme(colorScheme)
-        .alert(isPresented: $showAlert) {
-            if alertType == .Error {
-                return Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+        .alert(isPresented: $viewModel.showAlert) {
+            if viewModel.alertType == .Error {
+                return Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
             } else {
                 return Alert(title: Text("Loading"), message: Text("Please wait..."), dismissButton: .none)
             }
@@ -96,6 +78,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView().preferredColorScheme(.dark)
+        LoginView(viewModel: AuthViewModel(authRepository: AuthRepository())).preferredColorScheme(.dark)
     }
 }

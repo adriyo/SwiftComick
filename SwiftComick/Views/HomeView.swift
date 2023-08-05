@@ -15,14 +15,8 @@ struct HomeView: View {
     
     @State var comics: [Comic] = []
     
-    let dummyURL = "https://cdn-manga.com/files/thumbnail/The%20First%20Sword%20Of%20Earth.jpg"
-    
     func initList() {
-        for i in 1...10 {
-            comics.append(
-                Comic(imageUrl: dummyURL, title: "Comic Title Number \(i)")
-            )
-        }
+        comics = Dummy.getComics()
     }
     
     var body: some View {
@@ -56,7 +50,9 @@ struct HorizontalImageList: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack() {
                     ForEach(comics) { comic in
-                        SquareImageView(comic: comic)
+                        NavigationLink(destination: ComicDetailView(comic)) {
+                            SquareImageView(comic: comic)
+                        }
                     }
                 }
             }
@@ -77,7 +73,9 @@ struct VerticalImageList: View {
                                 GridItem(.flexible(minimum: 150, maximum: 200))]) {
                 ForEach(comics, id: \.self) { comic in
                     VStack {
-                        RectangleImageView(comic: comic)
+                        NavigationLink(destination: ComicDetailView(comic)) {
+                            RectangleImageView(comic: comic)
+                        }
                     }
                 }
             }
@@ -100,14 +98,14 @@ struct SquareImageView: View {
                     .frame(width: 80, height: 80)
                     .cornerRadius(8)
             }
-        
+            
             Text(comic.title)
                 .font(.caption)
                 .frame(maxWidth: .infinity)
                 .lineLimit(2)
                 .padding(.all, 8)
                 .background(.black)
-            .foregroundColor(.white)
+                .foregroundColor(.white)
             
         }
         .frame(width: 120, height: 120)
@@ -116,6 +114,12 @@ struct SquareImageView: View {
 
 struct RectangleImageView: View {
     let comic: Comic
+    let showTitle: Bool
+    
+    init(comic: Comic, showTitle: Bool = true) {
+        self.comic = comic
+        self.showTitle = showTitle
+    }
     
     var body: some View {
         VStack {
@@ -130,8 +134,10 @@ struct RectangleImageView: View {
                     .cornerRadius(8)
             }
             
-            Text(comic.title)
-                .font(.caption)
+            if showTitle {
+                Text(comic.title)
+                    .font(.caption)
+            }
         }
         .frame(height: 200)
     }

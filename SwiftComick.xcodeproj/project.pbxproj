@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97137B042A6EAFEB008692E6 /* ComicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97137B032A6EAFEB008692E6 /* ComicDetailView.swift */; };
+		97137B062A6EC96C008692E6 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97137B052A6EC96C008692E6 /* StringExtension.swift */; };
+		97137B082A6ECBE6008692E6 /* ComicImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97137B072A6ECBE6008692E6 /* ComicImage.swift */; };
+		97137B0A2A6ECE31008692E6 /* ComicChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97137B092A6ECE31008692E6 /* ComicChapter.swift */; };
+		976850A52A7E6C1000855DDD /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976850A42A7E6C1000855DDD /* UserInfo.swift */; };
+		976850A82A7E6EA100855DDD /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976850A72A7E6EA100855DDD /* AuthViewModel.swift */; };
+		976850AB2A7E6F4A00855DDD /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976850AA2A7E6F4A00855DDD /* AuthRepository.swift */; };
+		97918B262A7681AD000AF603 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97918B252A7681AD000AF603 /* Date.swift */; };
+		97918B282A7693AE000AF603 /* ComicViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97918B272A7693AE000AF603 /* ComicViewer.swift */; };
+		97B457AE2A7A8B8A0033F181 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97B457AD2A7A8B8A0033F181 /* Alamofire */; };
+		97CB700B2A70060F00B513BC /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB700A2A70060F00B513BC /* Dummy.swift */; };
+		97CB700D2A700BE000B513BC /* DetailComicNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB700C2A700BE000B513BC /* DetailComicNavigationLink.swift */; };
 		97D2E7B72A6BCAC1001949FC /* SwiftComickApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2E7B62A6BCAC1001949FC /* SwiftComickApp.swift */; };
 		97D2E7B92A6BCAC1001949FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2E7B82A6BCAC1001949FC /* ContentView.swift */; };
 		97D2E7BB2A6BCAC3001949FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97D2E7BA2A6BCAC3001949FC /* Assets.xcassets */; };
@@ -27,6 +39,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		97137B032A6EAFEB008692E6 /* ComicDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailView.swift; sourceTree = "<group>"; };
+		97137B052A6EC96C008692E6 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		97137B072A6ECBE6008692E6 /* ComicImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicImage.swift; sourceTree = "<group>"; };
+		97137B092A6ECE31008692E6 /* ComicChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicChapter.swift; sourceTree = "<group>"; };
+		976850A42A7E6C1000855DDD /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		976850A72A7E6EA100855DDD /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		976850AA2A7E6F4A00855DDD /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		97918B252A7681AD000AF603 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		97918B272A7693AE000AF603 /* ComicViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewer.swift; sourceTree = "<group>"; };
+		97CB700A2A70060F00B513BC /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		97CB700C2A700BE000B513BC /* DetailComicNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComicNavigationLink.swift; sourceTree = "<group>"; };
 		97D2E7B32A6BCAC1001949FC /* SwiftComick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftComick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D2E7B62A6BCAC1001949FC /* SwiftComickApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftComickApp.swift; sourceTree = "<group>"; };
 		97D2E7B82A6BCAC1001949FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,12 +75,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B457AE2A7A8B8A0033F181 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		976850A62A7E6E9200855DDD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				976850A72A7E6EA100855DDD /* AuthViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		976850A92A7E6F2600855DDD /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				976850AA2A7E6F4A00855DDD /* AuthRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		97D2E7AA2A6BCAC1001949FC = {
 			isa = PBXGroup;
 			children = (
@@ -77,10 +117,11 @@
 		97D2E7B52A6BCAC1001949FC /* SwiftComick */ = {
 			isa = PBXGroup;
 			children = (
+				976850A92A7E6F2600855DDD /* Repositories */,
+				976850A62A7E6E9200855DDD /* ViewModels */,
 				97D2E7CC2A6BCB8A001949FC /* Helpers */,
 				97D2E7CB2A6BCB6F001949FC /* Models */,
 				97D2E7CA2A6BCB52001949FC /* Views */,
-				97D2E7C92A6BCB3E001949FC /* Controllers */,
 				97D2E7B62A6BCAC1001949FC /* SwiftComickApp.swift */,
 				97D2E7E02A6C467F001949FC /* RouterDestination.swift */,
 				97D2E7B82A6BCAC1001949FC /* ContentView.swift */,
@@ -100,13 +141,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		97D2E7C92A6BCB3E001949FC /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		97D2E7CA2A6BCB52001949FC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +153,9 @@
 				97D2E7DE2A6C4360001949FC /* LoginView.swift */,
 				97D2E7E22A6C47C1001949FC /* MainScreenView.swift */,
 				97D2E7E42A6C48DE001949FC /* BottomTabView.swift */,
+				97137B032A6EAFEB008692E6 /* ComicDetailView.swift */,
+				97CB700C2A700BE000B513BC /* DetailComicNavigationLink.swift */,
+				97918B272A7693AE000AF603 /* ComicViewer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				97D2E7DC2A6BE6FE001949FC /* Comic.swift */,
+				97137B072A6ECBE6008692E6 /* ComicImage.swift */,
+				97137B092A6ECE31008692E6 /* ComicChapter.swift */,
+				97CB700A2A70060F00B513BC /* Dummy.swift */,
+				976850A42A7E6C1000855DDD /* UserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,6 +175,8 @@
 		97D2E7CC2A6BCB8A001949FC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				97137B052A6EC96C008692E6 /* StringExtension.swift */,
+				97918B252A7681AD000AF603 /* Date.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -154,6 +197,9 @@
 			dependencies = (
 			);
 			name = SwiftComick;
+			packageProductDependencies = (
+				97B457AD2A7A8B8A0033F181 /* Alamofire */,
+			);
 			productName = SwiftComick;
 			productReference = 97D2E7B32A6BCAC1001949FC /* SwiftComick.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +228,9 @@
 				Base,
 			);
 			mainGroup = 97D2E7AA2A6BCAC1001949FC;
+			packageReferences = (
+				97B457AC2A7A8B8A0033F181 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 97D2E7B42A6BCAC1001949FC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,19 +259,30 @@
 			files = (
 				97D2E7E32A6C47C1001949FC /* MainScreenView.swift in Sources */,
 				97D2E7E12A6C467F001949FC /* RouterDestination.swift in Sources */,
+				97CB700B2A70060F00B513BC /* Dummy.swift in Sources */,
 				97D2E7DD2A6BE6FE001949FC /* Comic.swift in Sources */,
+				976850A52A7E6C1000855DDD /* UserInfo.swift in Sources */,
 				97D2E7D42A6BD4BB001949FC /* RankingView.swift in Sources */,
 				97D2E7E52A6C48DE001949FC /* BottomTabView.swift in Sources */,
 				97D2E7D92A6BD4E8001949FC /* MainActivityView.swift in Sources */,
 				97D2E7C02A6BCAC3001949FC /* Persistence.swift in Sources */,
 				97D2E7DB2A6BD4FB001949FC /* MainSettingsView.swift in Sources */,
+				97137B062A6EC96C008692E6 /* StringExtension.swift in Sources */,
 				97D2E7D22A6BD4AA001949FC /* MyListView.swift in Sources */,
+				97918B282A7693AE000AF603 /* ComicViewer.swift in Sources */,
+				97137B042A6EAFEB008692E6 /* ComicDetailView.swift in Sources */,
+				97137B082A6ECBE6008692E6 /* ComicImage.swift in Sources */,
+				97137B0A2A6ECE31008692E6 /* ComicChapter.swift in Sources */,
 				97D2E7B92A6BCAC1001949FC /* ContentView.swift in Sources */,
+				97CB700D2A700BE000B513BC /* DetailComicNavigationLink.swift in Sources */,
 				97D2E7D02A6BD15C001949FC /* HomeView.swift in Sources */,
 				97D2E7D62A6BD4CD001949FC /* MainSearchView.swift in Sources */,
+				976850A82A7E6EA100855DDD /* AuthViewModel.swift in Sources */,
 				97D2E7DF2A6C4360001949FC /* LoginView.swift in Sources */,
+				97918B262A7681AD000AF603 /* Date.swift in Sources */,
 				97D2E7B72A6BCAC1001949FC /* SwiftComickApp.swift in Sources */,
 				97D2E7C32A6BCAC3001949FC /* SwiftComick.xcdatamodeld in Sources */,
+				976850AB2A7E6F4A00855DDD /* AuthRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +419,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,6 +449,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +485,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97B457AC2A7A8B8A0033F181 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97B457AD2A7A8B8A0033F181 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97B457AC2A7A8B8A0033F181 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		97D2E7C12A6BCAC3001949FC /* SwiftComick.xcdatamodeld */ = {

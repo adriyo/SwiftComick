@@ -33,16 +33,21 @@ class TabStateHandler: ObservableObject {
 }
 
 struct MainScreenView: View {
-    @StateObject var tabStateHandler: TabStateHandler = TabStateHandler()
+    
+    @StateObject private var tabStateHandler: TabStateHandler = TabStateHandler()
+    @ObservedObject private var viewModel: AuthViewModel
+    
+    init() {
+        let authRepository = AuthRepository()
+        self.viewModel = AuthViewModel(authRepository: authRepository)
+    }
     
     var body: some View {
         NavigationView {
             VStack {
                 BottomTabView(tabStateHandler: tabStateHandler)
                     .toolbar {
-                        if !tabStateHandler.isToolbarHidden {
-                            ToolbarView(tabSelected: $tabStateHandler.tabSelected)
-                        }
+                        ToolbarView(tabSelected: $tabStateHandler.tabSelected, viewModel: viewModel)
                     }
             }
         }
@@ -51,7 +56,9 @@ struct MainScreenView: View {
 }
 
 struct ToolbarView: ToolbarContent {
-   @Binding var tabSelected: Tab
+    @Binding var tabSelected: Tab
+    @ObservedObject var viewModel: AuthViewModel
+    
     var body: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             if tabSelected == .Home {
@@ -70,17 +77,36 @@ struct ToolbarView: ToolbarContent {
         }
         
         ToolbarItem(placement: .navigationBarTrailing) {
-            NavigationLink(destination: LoginView()) {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .frame(width: 30, height: 30)
+            if let user = viewModel.user {
+                AsyncImage(url: URL(string: user.profilePictureURL)) { image in
+                    image
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle()
+                                .stroke(Color.blue, lineWidth: 1)
+                        )
+                } placeholder: {
+                    Image(systemName: "photo.circle.fill")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .cornerRadius(8)
+                }
+            } else {
+                NavigationLink(destination: LoginView(viewModel: viewModel)) {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
             }
+            
         }
     }
 }
 
 struct SearchView: View {
-    @FocusState private var searchFieldIsFocused: Bool
     @State private var searchText = ""
     
     var onSearchFieldIsFocused : (Bool) -> ()
@@ -93,16 +119,11 @@ struct SearchView: View {
             
             TextField("Search", text: $searchText)
                 .padding(.all, 10)
-                .focused($searchFieldIsFocused)
                 .simultaneousGesture(TapGesture().onEnded {
                     print("Textfield pressed")
                 })
         }
         .padding(.horizontal)
-        .onChange(of: searchFieldIsFocused) { newValue in
-            print("onChange \(newValue)")
-            onSearchFieldIsFocused(newValue)
-        }
     }
 }
 
