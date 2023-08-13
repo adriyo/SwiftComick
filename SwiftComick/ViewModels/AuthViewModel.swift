@@ -22,6 +22,14 @@ class AuthViewModel: ObservableObject {
     
     init(authRepository: AuthRepository) {
         self.authRepository = authRepository
+        
+        let email = UserDefaults.standard.string(forKey: "email")
+        let displayName = UserDefaults.standard.string(forKey: "displayName")
+        let photoURL = UserDefaults.standard.string(forKey: "photoURL")
+    
+        if email != nil {
+            user = UserInfo(username: displayName ?? "", profilePictureURL: photoURL ?? "")
+        }
     }
     
     private func isValidEmail(email: String) -> Bool {
@@ -50,7 +58,34 @@ class AuthViewModel: ObservableObject {
                 self?.isLoggedIn = true
                 self?.user = user
             case .failure(let error):
-                print("error \(error)")
+                self?.alertType = .Error
+                self?.showAlert = true
+                self?.errorMessage = "\(error.localizedDescription)"
+            }
+        }
+    }
+    
+    func register(email: String, password: String) {
+        if !isValidEmail(email: email) || !isValidPassword(password: password) {
+            errorMessage = "Invalid email or password."
+            alertType = .Error
+            showAlert = true
+            return
+        }
+        
+        alertType = .Loading
+        showAlert = true
+        
+        authRepository.register(email: email, password: password) { [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.showAlert = false
+                self?.isLoggedIn = true
+                self?.user = user
+            case .failure(let error):
+                self?.alertType = .Error
+                self?.showAlert = true
+                self?.errorMessage = "\(error.localizedDescription)"
             }
         }
     }

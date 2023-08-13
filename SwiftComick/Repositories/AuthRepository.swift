@@ -10,13 +10,42 @@
 
 
 import Foundation
+import FirebaseAuth
 
 struct AuthRepository {
     
     func login(email: String, password: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion(.success(UserInfo(username: "Rudy", profilePictureURL: "https://s.hs-data.com/bilder/spieler/gross/13029.jpg")))
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if error != nil {
+                completion(.failure(error!))
+                return
+            }
+            
+            guard let user = authResult?.user else { return }
+            let userResult = UserInfo(username: user.displayName ?? "Unknown", profilePictureURL: user.photoURL?.absoluteString)
+            saveUser(email: email, displayName: userResult.username, photoURL: userResult.profilePictureURL)
+            completion(.success(userResult))
         }
+    }
+    
+    func register(email: String, password: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if error != nil {
+                completion(.failure(error!))
+                return
+            }
+            
+            guard let user = authResult?.user else { return }
+            let userResult = UserInfo(username: user.displayName ?? "Unknown", profilePictureURL: user.photoURL?.absoluteString)
+            saveUser(email: email, displayName: userResult.username, photoURL: userResult.profilePictureURL)
+            completion(.success(userResult))
+        }
+    }
+    
+    func saveUser(email: String, displayName: String, photoURL: String?) {
+        UserDefaults.standard.set(email, forKey: "email")
+        UserDefaults.standard.set(displayName, forKey: "displayName")
+        UserDefaults.standard.set(photoURL, forKey: "photoURL")
     }
     
 }

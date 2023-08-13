@@ -34,7 +34,7 @@ struct LoginView: View {
     }
     
     private func register() {
-        
+        viewModel.register(email: email, password: password)
     }
     
     var body: some View {

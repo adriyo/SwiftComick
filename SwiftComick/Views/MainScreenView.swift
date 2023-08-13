@@ -78,21 +78,33 @@ struct ToolbarView: ToolbarContent {
         
         ToolbarItem(placement: .navigationBarTrailing) {
             if let user = viewModel.user {
-                AsyncImage(url: URL(string: user.profilePictureURL)) { image in
-                    image
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(Circle())
-                        .overlay(
+                NavigationLink(destination: UserView()) {
+                    AsyncImage(url: URL(string: user.profilePictureURL ?? "")) { image in
+                        image
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.blue, lineWidth: 1)
+                            )
+                    } placeholder: {
+//                        Image(systemName: "person.crop.circle")
+//                            .resizable()
+//                            .frame(width: 30, height: 30)
+//                            .cornerRadius(8)
+                        ZStack(alignment: .center) {
                             Circle()
-                                .stroke(Color.blue, lineWidth: 1)
-                        )
-                } placeholder: {
-                    Image(systemName: "photo.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(8)
+                                .strokeBorder(Color.green, lineWidth: 1)
+                                .background(Circle().foregroundColor(Color.blue))
+                                
+                            Text(user.username.prefix(1))
+                                .foregroundStyle(.white)
+                        }
+                        .frame(width: 30, height: 30)
+                        
+                    }
                 }
             } else {
                 NavigationLink(destination: LoginView(viewModel: viewModel)) {

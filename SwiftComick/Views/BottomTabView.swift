@@ -14,7 +14,6 @@ import SwiftUI
 enum Tab: String {
     case Home
     case MyList
-    case Ranking
     case Search
     case Activity
     case Settings
@@ -40,13 +39,6 @@ struct BottomTabView: View {
                         .frame(width: 100, height: 100, alignment: .center)
                     Text(Tab.MyList.rawValue)
                 }.tag(Tab.MyList)
-            RankingView()
-                .tabItem {
-                    Image(systemName: "star")
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                    Text(Tab.Ranking.rawValue)
-                }.tag(Tab.Ranking)
             MainSearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
