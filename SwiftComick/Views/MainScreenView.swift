@@ -78,7 +78,7 @@ struct ToolbarView: ToolbarContent {
         
         ToolbarItem(placement: .navigationBarTrailing) {
             if let user = viewModel.user {
-                NavigationLink(destination: UserView()) {
+                NavigationLink(destination: UserView(viewModel: viewModel)) {
                     AsyncImage(url: URL(string: user.profilePictureURL ?? "")) { image in
                         image
                             .resizable()
@@ -90,10 +90,6 @@ struct ToolbarView: ToolbarContent {
                                     .stroke(Color.blue, lineWidth: 1)
                             )
                     } placeholder: {
-//                        Image(systemName: "person.crop.circle")
-//                            .resizable()
-//                            .frame(width: 30, height: 30)
-//                            .cornerRadius(8)
                         ZStack(alignment: .center) {
                             Circle()
                                 .strokeBorder(Color.green, lineWidth: 1)

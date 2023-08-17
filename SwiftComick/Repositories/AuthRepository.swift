@@ -48,4 +48,9 @@ struct AuthRepository {
         UserDefaults.standard.set(photoURL, forKey: "photoURL")
     }
     
+    func clearData() {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach(defaults.removeObject(forKey:))
+    }
 }

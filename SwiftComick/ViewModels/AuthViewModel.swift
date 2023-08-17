@@ -90,4 +90,10 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    func logout() {
+        user = nil
+        isLoggedIn = false
+        authRepository.clearData()
+    }
+    
 }
