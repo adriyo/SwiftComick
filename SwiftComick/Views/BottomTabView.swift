@@ -25,7 +25,7 @@ struct BottomTabView: View {
 
     var body: some View {
         TabView(selection: $tabStateHandler.tabSelected) {
-            HomeView()
+            HomeView(viewModel: ListComicsViewModel())
                 .tabItem {
                     Image(systemName: "house")
                         .resizable()

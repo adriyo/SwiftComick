@@ -11,6 +11,7 @@
 
 import SwiftUI
 import FirebaseCore
+import Supabase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -35,3 +36,8 @@ struct SwiftComickApp: App {
         }
     }
 }
+
+let supabase = SupabaseClient(
+  supabaseURL: Secrets.supabaseURL,
+  supabaseKey: Secrets.supabaseAnonKey
+)

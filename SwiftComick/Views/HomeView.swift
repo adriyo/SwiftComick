@@ -15,24 +15,29 @@ struct HomeView: View {
     
     @State var comics: [Comic] = []
     
-    func initList() {
-        comics = Dummy.getComics()
+    @StateObject private var viewModel: ListComicsViewModel
+    
+    init(viewModel: ListComicsViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                HorizontalImageList(comics: comics, title: "Most Viewed")
-                HorizontalImageList(comics: comics, title: "Popular New Comic")
-                HorizontalImageList(comics: comics, title: "Recently Added")
-                HorizontalImageList(comics: comics, title: "Completed Comic")
-                VerticalImageList(comics: comics, title: "Updates")
+                HorizontalImageList(comics: viewModel.mostViewedComics, title: "Most Viewed")
+                HorizontalImageList(comics: viewModel.popularComics, title: "Popular New Comic")
+                HorizontalImageList(comics: viewModel.recentlyAddedComics, title: "Recently Added")
+                HorizontalImageList(comics: viewModel.completedComics, title: "Completed Comic")
+                VerticalImageList(comics: viewModel.updatesComics, title: "Updates")
             }
             .padding()
         }
         .navigationTitle("Menu 1")
-        .onAppear {
-            initList()
+        .refreshable {
+            await viewModel.fetchComics()
+        }
+        .task {
+            await viewModel.fetchComics()
         }
     }
 }
@@ -145,6 +150,6 @@ struct RectangleImageView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().preferredColorScheme(.dark)
+        HomeView(viewModel: ListComicsViewModel()).preferredColorScheme(.dark)
     }
 }
