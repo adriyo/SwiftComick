@@ -12,18 +12,25 @@
 import SwiftUI
 
 struct ComicViewer: View {
-    let images: [ComicImage]
     
+    let chapter: ComicChapter
     @State private var currentIndex = 0
     @State private var isShowingImage = false
+    
+    @StateObject private var viewModel: ComicDetailViewModel
+    
+    init(chapter: ComicChapter, viewModel: ComicDetailViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.chapter = chapter
+    }
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVStack(spacing: 0) {
-                        ForEach(0..<images.count,id: \.self) { index in
-                            let comicImage = images[index]
+                        ForEach(0..<viewModel.images.count,id: \.self) { index in
+                            let comicImage = viewModel.images[index]
                             AsyncImageView(
                                 url: URL(string: comicImage.imageURL),
                                 comicImage: comicImage,
@@ -41,6 +48,11 @@ struct ComicViewer: View {
                     }
                 }
             }
+        }.refreshable {
+            await viewModel.fetchChapter(chapter: chapter)
+        }
+        .task {
+            await viewModel.fetchChapter(chapter: chapter)
         }
     }
 }
@@ -96,6 +108,6 @@ struct AsyncImageView: View {
 
 struct ComicViewer_Previews: PreviewProvider {
     static var previews: some View {
-        ComicViewer(images: Dummy.images())
+        ComicViewer(chapter: Dummy.chapters()[0], viewModel: ComicDetailViewModel(comic: Dummy.getComics()[0]))
     }
 }

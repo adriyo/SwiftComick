@@ -19,6 +19,10 @@ struct HomeView: View {
     
     init(viewModel: ListComicsViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        
+        Task {
+            await viewModel.fetchComics()
+        }
     }
     
     var body: some View {
@@ -34,9 +38,6 @@ struct HomeView: View {
         }
         .navigationTitle("Menu 1")
         .refreshable {
-            await viewModel.fetchComics()
-        }
-        .task {
             await viewModel.fetchComics()
         }
     }

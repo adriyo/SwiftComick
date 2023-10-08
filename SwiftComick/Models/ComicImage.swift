@@ -12,6 +12,6 @@
 import Foundation
 
 struct ComicImage: Identifiable, Hashable {
-    let id: Int
+    let id: String
     let imageURL: String
 }

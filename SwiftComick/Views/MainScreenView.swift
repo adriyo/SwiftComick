@@ -26,9 +26,9 @@ class TabStateHandler: ObservableObject {
         tabSelected = selectedTab
         isToolbarHidden = selectedTab == .Activity || selectedTab == .Settings
         
-        print("tabSelected: \(selectedTab)")
+        debugPrint("tabSelected: \(selectedTab)")
         
-        print("isToolbarHidden: \(isToolbarHidden)")
+        debugPrint("isToolbarHidden: \(isToolbarHidden)")
     }
 }
 
@@ -72,7 +72,7 @@ struct ToolbarView: ToolbarContent {
         
         ToolbarItem(placement: .principal) {
             SearchView(onSearchFieldIsFocused:  { isFocused in
-                print("isFocused \(isFocused)")
+                debugPrint("isFocused \(isFocused)")
             })
         }
         
@@ -128,7 +128,7 @@ struct SearchView: View {
             TextField("Search", text: $searchText)
                 .padding(.all, 10)
                 .simultaneousGesture(TapGesture().onEnded {
-                    print("Textfield pressed")
+                    debugPrint("Textfield pressed")
                 })
         }
         .padding(.horizontal)

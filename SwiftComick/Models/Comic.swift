@@ -12,7 +12,7 @@
 import Foundation
 
 struct Comic: Identifiable, Hashable {
-    let id = UUID()
+    let id: UUID
     let imageUrl: String
     let title: String
     let description: String

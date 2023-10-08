@@ -38,7 +38,7 @@ class ListComicsViewModel: ObservableObject {
             self.completedComics = comics
             self.updatesComics = comics
         case .failure(let error):
-            print("error: \(error.localizedDescription)")
+            debugPrint("error: \(error.localizedDescription)")
             self.errorMessage = error.localizedDescription
         }
         

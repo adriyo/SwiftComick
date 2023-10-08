@@ -12,8 +12,9 @@
 import Foundation
 
 struct ComicChapter: Identifiable, Hashable {
-    let id: Int
-    let number: String
+    let id: String
+    let label: String
     let uploadDate: Date
-    let images: [ComicImage]
+    var images: [ComicImage] = []
+    var paging: Paging? = nil
 }

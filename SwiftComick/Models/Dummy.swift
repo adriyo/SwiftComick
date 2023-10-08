@@ -21,7 +21,7 @@ struct Dummy {
         var comics = [Comic]()
         for i in 1...10 {
             comics.append(
-                Comic(imageUrl: dummyURL, title: "Comic Title Number \(i)", description: dummyDescription, chapters: chapters())
+                Comic(id: UUID(), imageUrl: dummyURL, title: "Comic Title Number \(i)", description: dummyDescription, chapters: chapters())
             )
         }
         return comics
@@ -31,7 +31,7 @@ struct Dummy {
         var chapters = [ComicChapter]()
         for i in 1...10 {
             chapters.append(
-                ComicChapter(id: i, number: "Chapter \(i+1)", uploadDate: Date(), images: images())
+                ComicChapter(id: "\(i)", label: "Chapter \(i+1)", uploadDate: Date(), images: images())
             )
         }
         return chapters
@@ -40,7 +40,7 @@ struct Dummy {
     static func images() -> [ComicImage] {
         var images = [ComicImage]()
         for i in 1...10 {
-            images.append(ComicImage(id: i, imageURL: imageURL))
+            images.append(ComicImage(id: "\(i)", imageURL: imageURL))
         }
         return images
     }

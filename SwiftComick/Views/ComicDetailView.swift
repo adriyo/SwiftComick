@@ -14,8 +14,10 @@ import SwiftUI
 struct ComicDetailView: View {
     
     let comic: Comic
-    
+    @StateObject private var viewModel: ComicDetailViewModel
+
     init(_ comic: Comic) {
+        _viewModel = StateObject(wrappedValue: ComicDetailViewModel(comic: comic))
         self.comic = comic
     }
     
@@ -65,17 +67,24 @@ struct ComicDetailView: View {
                 }
                 .padding(.vertical, 20)
                 
-                ComicDetailChaptersView(chapters: comic.chapters)
+                ComicDetailChaptersView(chapters: viewModel.chapters, viewModel: viewModel)
             }
             .padding()
         }
         .navigationTitle(comic.title)
+        .refreshable {
+            await viewModel.fetchChapters(comic: comic)
+        }
+        .task {
+            await viewModel.fetchChapters(comic: comic)
+        }
     }
 }
 
 private struct ComicDetailChaptersView: View {
     
     let chapters: [ComicChapter]
+    let viewModel: ComicDetailViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -83,12 +92,11 @@ private struct ComicDetailChaptersView: View {
                 .font(.title2)
             
             ForEach(chapters, id: \.self) { chapter in
-                NavigationLink(destination: ComicViewer(images: chapter.images)) {
+                NavigationLink(destination: ComicViewer(chapter: chapter, viewModel: viewModel)) {
                     RowChapterView(chapter: chapter)
                 }
             }
         }
-        .frame(width: .infinity)
     }
 }
 
@@ -100,18 +108,14 @@ private struct RowChapterView: View {
         VStack(alignment: .leading) {
             GeometryReader { geometry in
                 HStack {
-                    Text("Ch. \(chapter.number)")
+                    Text("Ch. \(chapter.label)")
                         .frame(width: geometry.size.width * 0.5, alignment: .leading)
                         .font(.callout)
                         .multilineTextAlignment(.leading)
-
-                    Text("\(chapter.uploadDate.getUploadedDate())")
-                        .font(.callout)
-                        .frame(width: geometry.size.width * 0.3)
                     
                     Text("\(chapter.uploadDate.getUploadedDate())")
                         .font(.callout)
-                        .frame(width: geometry.size.width * 0.2)
+                        .frame(width: geometry.size.width * 0.5)
                 }
             }
             .padding(.vertical)
